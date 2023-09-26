@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { useHistory } from "react-router-dom";
-import { loginApi } from "../../api/httpApi";
+// import { loginApi } from "../../api/httpApi";
 import { message } from "antd";
 import { setToken } from "../../utils/handleToken";
 import style from "./Login.module.scss";
@@ -18,16 +18,26 @@ function Login() {
   const login = () => {
     if ((username.current.value, password.current.value)) {
       NProgress.start();
-      loginApi(username.current.value, password.current.value).then((res) => {
-        NProgress.done();
-        if (res.data[0]) {
+      // loginApi(username.current.value, password.current.value).then((res) => {
+      //   NProgress.done();
+      //   if (res.data[0]) {
+      //     message.success("登录成功！");
+      //     setToken(res.data[0].edu_user.token);
+      //     Jump("/");
+      //   } else {
+      //     message.error("用户名或密码输入错误！");
+      //   }
+      // });
+      setTimeout(() => {
+        if (username.current.value === "12344321@qq.com" && password.current.value === "123456") {
           message.success("登录成功！");
-          setToken(res.data[0].edu_user.token);
+          setToken("token");
           Jump("/");
         } else {
           message.error("用户名或密码输入错误！");
         }
-      });
+        NProgress.done();
+      }, 1500);
     } else {
       message.warning("请输入用户名或密码！");
     }
